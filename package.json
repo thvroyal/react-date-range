@@ -1,5 +1,5 @@
 {
-  "name": "react-date-range",
+  "name": "@thvroyal/react-date-range",
   "version": "1.4.0",
   "description": "A React component for choosing dates and date ranges.",
   "main": "dist/index.js",
@@ -24,12 +24,13 @@
     "Mehmet Kamil Morcay <mehmetmorcay@gmail.com> (https://github.com/mkg0)",
     "Kamyar Ghasemlou <github@kamy.me> (https://github.com/kamyar)",
     "Engin Semih Basmacı <semih.basmaci@gmail.com> (https://github.com/mortargrind)",
-    "Onur Kerimov <onurkerimov@gmail.com> (https://github.com/onurkerimov)"
+    "Onur Kerimov <onurkerimov@gmail.com> (https://github.com/onurkerimov)",
+    "Hoang Viet <thvroyal@gmail.com> (https://github.com/thvroyal)"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/hypeserver/react-date-range"
+    "url": "https://github.com/thvroyal/react-date-range"
   },
   "bugs": {
     "url": "http://github.com/hypeserver/react-date-range/issues"

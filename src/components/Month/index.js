@@ -17,13 +17,12 @@ import {
 } from 'date-fns';
 import { getMonthDisplayRange } from '../../utils';
 
-function renderWeekdays(styles, dateOptions, weekdayDisplayFormat) {
-  const now = new Date();
+function renderWeekdays(styles, dateOptions, weekdayDisplayFormat, today) {
   return (
     <div className={styles.weekDays}>
       {eachDayOfInterval({
-        start: startOfWeek(now, dateOptions),
-        end: endOfWeek(now, dateOptions),
+        start: startOfWeek(today, dateOptions),
+        end: endOfWeek(today, dateOptions),
       }).map((day, i) => (
         <span className={styles.weekDay} key={i}>
           {format(day, weekdayDisplayFormat, dateOptions)}
@@ -35,8 +34,15 @@ function renderWeekdays(styles, dateOptions, weekdayDisplayFormat) {
 
 class Month extends PureComponent {
   render() {
-    const now = new Date();
-    const { displayMode, focusedRange, drag, styles, disabledDates, disabledDay } = this.props;
+    const {
+      displayMode,
+      focusedRange,
+      drag,
+      styles,
+      disabledDates,
+      disabledDay,
+      today,
+    } = this.props;
     const minDate = this.props.minDate && startOfDay(this.props.minDate);
     const maxDate = this.props.maxDate && endOfDay(this.props.maxDate);
     const monthDisplay = getMonthDisplayRange(
@@ -65,7 +71,7 @@ class Month extends PureComponent {
           </div>
         ) : null}
         {this.props.showWeekDays &&
-          renderWeekdays(styles, this.props.dateOptions, this.props.weekdayDisplayFormat)}
+          renderWeekdays(styles, this.props.dateOptions, this.props.weekdayDisplayFormat, today)}
         <div className={styles.days} onMouseLeave={this.props.onMouseLeave}>
           {eachDayOfInterval({ start: monthDisplay.start, end: monthDisplay.end }).map(
             (day, index) => {
@@ -84,7 +90,7 @@ class Month extends PureComponent {
                   day={day}
                   preview={showPreview ? this.props.preview : null}
                   isWeekend={isWeekend(day, this.props.dateOptions)}
-                  isToday={isSameDay(day, now)}
+                  isToday={isSameDay(day, today)}
                   isStartOfWeek={isSameDay(day, startOfWeek(day, this.props.dateOptions))}
                   isEndOfWeek={isSameDay(day, endOfWeek(day, this.props.dateOptions))}
                   isStartOfMonth={isStartOfMonth}
@@ -143,6 +149,7 @@ Month.propTypes = {
   showWeekDays: PropTypes.bool,
   showMonthName: PropTypes.bool,
   fixedHeight: PropTypes.bool,
+  today: PropTypes.instanceOf(Date),
 };
 
 export default Month;
